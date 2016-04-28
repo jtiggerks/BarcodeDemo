@@ -48,10 +48,15 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        
+        console.log('Received Event: ' + id);
     },
 
-    scan: function() { 
+    scan: function() {
+        console.log('scanning');
+        
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.scan( function (result) { 
 
                 
         $.ajax({
@@ -68,15 +73,34 @@ var app = {
                  alerta(value.nome);
                  document.getElementById("info").innerHTML = '1212'+value.nome;
             });
-
         }
 
+        });
 
-                   
-          });
- 
+        
+
+
+        }, function (error) { 
+            console.log("Scanning failed: ", error); 
+        } );
+    },
+
+    encode: function() {
+        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
+            alert("encode success: " + success);
+          }, function(fail) {
+            alert("encoding failed: " + fail);
+          }
+        );
+
+    }
 
 };
+
+
+ 
 
 function alerta(e){
 $("<div title='Aviso'></div>").dialog({
