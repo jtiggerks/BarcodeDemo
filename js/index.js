@@ -53,11 +53,7 @@ var app = {
 
     scan: function() { 
 
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.scan( function (result) { 
-
-            
+                
         $.ajax({
             url: 'http://perfiljt.com.br/app/teste.php?nocache=' + (new Date()).getTime(),
             type: 'POST',
@@ -73,25 +69,11 @@ var app = {
                  document.getElementById("info").innerHTML = '1212'+value.nome;
             });
 
+        }
+
 
                    
           });
- 
-
-     
-            
-          
-            /*
-            if (args.format == "QR_CODE") {
-                window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
-            }
-            */
-
-        }, function (error) { 
-            alert('erro');
-        } );
-    }
-
  
 
 };
