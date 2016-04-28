@@ -48,12 +48,11 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        
     },
 
-    scan: function() {
-        console.log('scanning');
-        
+    scan: function() { 
+
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan( function (result) { 
@@ -76,20 +75,10 @@ var app = {
             */
 
         }, function (error) { 
-            console.log("Scanning failed: ", error); 
+            alert('erro');
         } );
-    },
-
-    encode: function() {
-        var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-
-        scanner.encode(scanner.Encode.TEXT_TYPE, "http://www.nhl.com", function(success) {
-            alert("encode success: " + success);
-          }, function(fail) {
-            alert("encoding failed: " + fail);
-          }
-        );
-
     }
+
+ 
 
 };
