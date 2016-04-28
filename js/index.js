@@ -57,13 +57,29 @@ var app = {
 
         scanner.scan( function (result) { 
 
-            alert( 
-            "Result: " + result.text + "\n" + 
-            "Format: " + result.format + "\n" + 
-            "Cancelled: " + result.cancelled);  
+            
+        $.ajax({
+            url: 'http://perfiljt.com.br/app/teste.php?nocache=' + (new Date()).getTime(),
+            type: 'POST',
+            cache:false,       
+            data: {nome: result.text},
+            crossDomain:true,
+            complete: function(data) { 
+     
+
+            $.each(data,function(key,value)
+            { 
+                 alerta(value.nome);
+                 document.getElementById("info").innerHTML = '1212'+value.nome;
+            });
+
+
+                   
+          });
+ 
 
      
-            document.getElementById("info").innerHTML = result.text;
+            
           
             /*
             if (args.format == "QR_CODE") {
@@ -79,3 +95,18 @@ var app = {
  
 
 };
+
+function alerta(e){
+$("<div title='Aviso'></div>").dialog({
+   open: function(event, ui) { $(this).html('<span style="text-align:"center;">'+e+'</span>'); $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
+    show: { effect: "fade", duration: 300 },
+    buttons: [
+    {
+      text: "Ok",
+      click: function() {
+        $( this ).dialog("close");
+      }
+    }
+  ]
+}); 
+}
