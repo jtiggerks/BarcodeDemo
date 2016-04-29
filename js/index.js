@@ -53,7 +53,7 @@ var app = {
 
     scan: function() {
         console.log('scanning');
-        
+        alert('clique ok');
         var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
         scanner.scan( function (result) { 
@@ -82,7 +82,7 @@ var app = {
 
         }, function (error) { 
             console.log("Scanning failed: ", error); 
-        } );
+        });
     },
 
     encode: function() {
